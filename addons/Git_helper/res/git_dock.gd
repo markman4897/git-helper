@@ -47,35 +47,27 @@ func print_to_history(message:String) -> void:
 
 func do_git_command(command:Array, silent:bool=false) -> String:
 	var output = []
+	var cmd = array_join(command, " ")
 	
 	# print the commands
 	if !silent:
-		print_to_history("$: " + array_join(command, " "))
+		print_to_history("$ git " + cmd)
 	
 	# run git bash script
-	var _void = OS.execute(git_path, command, true, output)
+	var ret = OS.execute(git_path, command, true, output, true)
+	var out = array_join(output, "\n")
+
+	if !silent && out.length() > 0:
+		print_to_history(out)
 	
-	var file = File.new()
-	
-	if file.file_exists("res://log.tmp"):
-		# get git command response from generated log.tmp file
-		file.open("res://log.tmp", 1)
-		var response = file.get_as_text()
-		
-		file.close()
-		
-		# delete log.tmp file
-		var dir = Directory.new()
-		dir.remove("res://log.tmp")
-		
-		# print git command
-		if !silent:
-			print_to_history(response)
-		
-		return response
-	else:
-		print_error("do_git_command failed")
+	if ret != OK:
+		printerr("`git %s` returned %d" % [cmd, ret])
+		printerr("Logs saved to res://git.log res://git-err.log")
+		print_error("do_git_command failed: return code %d" % ret)
 		return "error"
+
+	return out
+
 
 func do_git_button(command:Array) -> void:
 	do_git_command(command)
@@ -115,7 +107,7 @@ func is_origin_present() -> bool:
 # joins "arr" array with "glue" delimeter and returns string
 func array_join(arr : Array, glue : String = '') -> String:
 	var string : String = ''
-	for index in range(0, arr.size()):
+	for index in arr.size():
 		string += str(arr[index])
 		if index < arr.size() - 1:
 			string += glue
