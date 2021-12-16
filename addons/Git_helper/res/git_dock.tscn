@@ -1,0 +1,266 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/Git_helper/res/git_dock.gd" type="Script" id=1]
+
+[node name="Git Helper" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+
+[node name="quick_commands" type="Label" parent="VBoxContainer/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 14.0
+text = "Quick Commands"
+
+[node name="buttons" type="GridContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 1024.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+columns = 3
+
+[node name="status" type="Button" parent="VBoxContainer/VBoxContainer/buttons"]
+margin_right = 338.0
+margin_bottom = 20.0
+hint_tooltip = "requires no arguments"
+size_flags_horizontal = 3
+text = "Status"
+
+[node name="commit" type="Button" parent="VBoxContainer/VBoxContainer/buttons"]
+margin_left = 342.0
+margin_right = 680.0
+margin_bottom = 20.0
+hint_tooltip = "requires [message] argument (takes whole input as string)"
+size_flags_horizontal = 3
+text = "Commit -m"
+
+[node name="push" type="Button" parent="VBoxContainer/VBoxContainer/buttons"]
+margin_left = 684.0
+margin_right = 1022.0
+margin_bottom = 20.0
+hint_tooltip = "can take [branch_name] argument, default is \"main\""
+size_flags_horizontal = 3
+text = "Push"
+
+[node name="pull" type="Button" parent="VBoxContainer/VBoxContainer/buttons"]
+margin_top = 24.0
+margin_right = 338.0
+margin_bottom = 44.0
+hint_tooltip = "can take [branch_name] argument, default is \"main\""
+size_flags_horizontal = 3
+text = "Pull"
+
+[node name="add" type="Button" parent="VBoxContainer/VBoxContainer/buttons"]
+margin_left = 342.0
+margin_top = 24.0
+margin_right = 680.0
+margin_bottom = 44.0
+hint_tooltip = "can take [arguments] argument, default is \"-A\""
+size_flags_horizontal = 3
+text = "Add"
+
+[node name="more" type="Button" parent="VBoxContainer/VBoxContainer/buttons"]
+margin_left = 684.0
+margin_top = 24.0
+margin_right = 1022.0
+margin_bottom = 44.0
+hint_tooltip = "show more buttons"
+size_flags_horizontal = 3
+toggle_mode = true
+text = "more"
+
+[node name="more_buttons" type="GridContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 66.0
+margin_right = 1024.0
+margin_bottom = 158.0
+columns = 3
+
+[node name="init" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+margin_right = 338.0
+margin_bottom = 20.0
+hint_tooltip = "requires [branch_name] argument, default is \"-b main\""
+size_flags_horizontal = 3
+text = "Init"
+
+[node name="commit2" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+margin_left = 342.0
+margin_right = 680.0
+margin_bottom = 20.0
+hint_tooltip = "requires [title]|[message] arguments ([message] argument takes everything after \"|\" as string)"
+size_flags_horizontal = 3
+text = "Commit -m -m"
+
+[node name="clone" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+margin_left = 684.0
+margin_right = 1022.0
+margin_bottom = 20.0
+hint_tooltip = "requires [repo_link] argument"
+size_flags_horizontal = 3
+text = "Clone"
+
+[node name="checkout" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+margin_top = 24.0
+margin_right = 338.0
+margin_bottom = 44.0
+hint_tooltip = "requires [branch_name] argument"
+size_flags_horizontal = 3
+disabled = true
+text = "Checkout"
+
+[node name="merge_to" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+margin_left = 342.0
+margin_top = 24.0
+margin_right = 680.0
+margin_bottom = 44.0
+hint_tooltip = "requires [branch_name] argument"
+size_flags_horizontal = 3
+disabled = true
+text = "Merge To"
+
+[node name="tags" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+margin_left = 684.0
+margin_top = 24.0
+margin_right = 1022.0
+margin_bottom = 44.0
+hint_tooltip = "requires no arguments"
+size_flags_horizontal = 3
+text = "Tags"
+
+[node name="git_ignore" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+margin_top = 48.0
+margin_right = 338.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+disabled = true
+text = "Git Ignore"
+
+[node name="tag" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+margin_left = 342.0
+margin_top = 48.0
+margin_right = 680.0
+margin_bottom = 68.0
+hint_tooltip = "requires [tag_name] argument"
+size_flags_horizontal = 3
+text = "Tag"
+
+[node name="tag2" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+margin_left = 684.0
+margin_top = 48.0
+margin_right = 1022.0
+margin_bottom = 68.0
+hint_tooltip = "requires [tag_name] [message] arguments ([message] argument takes everything after \" \" as string)"
+size_flags_horizontal = 3
+text = "Tag -a -m"
+
+[node name="set_origin" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+margin_top = 72.0
+margin_right = 338.0
+margin_bottom = 92.0
+hint_tooltip = "requires [remote_link] argument
+If remote \"origin\" is already present command set-url is used, otherwise command add is used"
+size_flags_horizontal = 3
+text = "Set Origin"
+
+[node name="del_tag" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+margin_left = 342.0
+margin_top = 72.0
+margin_right = 680.0
+margin_bottom = 92.0
+hint_tooltip = "requires [tag_name] argument"
+size_flags_horizontal = 3
+text = "Tag -d"
+
+[node name="tag_push" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+margin_left = 684.0
+margin_top = 72.0
+margin_right = 1022.0
+margin_bottom = 92.0
+hint_tooltip = "requires [tag_name] argument"
+size_flags_horizontal = 3
+text = "Tag push"
+
+[node name="button_input" type="LineEdit" parent="VBoxContainer/VBoxContainer"]
+margin_top = 162.0
+margin_right = 1024.0
+margin_bottom = 192.0
+rect_min_size = Vector2( 0, 30 )
+placeholder_text = "button input"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="git_terminal" type="Label" parent="VBoxContainer/VBoxContainer"]
+margin_top = 196.0
+margin_right = 1024.0
+margin_bottom = 210.0
+text = "Git terminal"
+
+[node name="history" type="TextEdit" parent="VBoxContainer/VBoxContainer"]
+margin_top = 214.0
+margin_right = 1024.0
+margin_bottom = 542.0
+size_flags_vertical = 7
+text = "*** start ***"
+readonly = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 546.0
+margin_right = 1024.0
+margin_bottom = 576.0
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_top = 8.0
+margin_right = 12.0
+margin_bottom = 22.0
+text = "$:"
+
+[node name="commandline" type="LineEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 16.0
+margin_right = 1024.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+size_flags_horizontal = 3
+placeholder_text = "git command line"
+
+[node name="enter" type="Button" parent="VBoxContainer/VBoxContainer"]
+margin_top = 580.0
+margin_right = 1024.0
+margin_bottom = 600.0
+text = "Enter"
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/status" to="." method="_on_status_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/commit" to="." method="_on_commit_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/push" to="." method="_on_push_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/pull" to="." method="_on_pull_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/add" to="." method="_on_add_pressed"]
+[connection signal="toggled" from="VBoxContainer/VBoxContainer/buttons/more" to="." method="_on_more_toggled"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/init" to="." method="_on_init_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/commit2" to="." method="_on_commit2_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/clone" to="." method="_on_clone_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/checkout" to="." method="_on_checkout_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/merge_to" to="." method="_on_merge_to_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/tags" to="." method="_on_tags_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/git_ignore" to="." method="_on_git_ignore_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/tag" to="." method="_on_tag_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/tag2" to="." method="_on_tag2_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/set_origin" to="." method="_on_set_origin_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/del_tag" to="." method="_on_del_tag_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/tag_push" to="." method="_on_tag_push_pressed"]
+[connection signal="cursor_changed" from="VBoxContainer/VBoxContainer/history" to="." method="_on_history_cursor_changed"]
+[connection signal="text_entered" from="VBoxContainer/VBoxContainer/HBoxContainer/commandline" to="." method="_on_enter_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/enter" to="." method="_on_enter_pressed"]
