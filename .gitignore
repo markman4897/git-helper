@@ -2,3 +2,4 @@
 !*/
 !/addons/Git_helper/**
 !.gitignore
+!.gitattributes
