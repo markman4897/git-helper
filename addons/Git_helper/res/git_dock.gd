@@ -54,7 +54,7 @@ func do_git_command(command:Array, silent:bool=false) -> String:
 		print_to_history("$ git " + cmd)
 	
 	# run git bash script
-	var ret = OS.execute(git_path, command, true, output, true)
+	var ret = OS.execute(git_path, command, true, output)
 	var out = array_join(output, "\n")
 
 	if !silent && out.length() > 0:

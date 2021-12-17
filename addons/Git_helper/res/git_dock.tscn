@@ -85,6 +85,7 @@ toggle_mode = true
 text = "more"
 
 [node name="more_buttons" type="GridContainer" parent="VBoxContainer/VBoxContainer"]
+visible = false
 margin_top = 66.0
 margin_right = 1024.0
 margin_bottom = 158.0
@@ -95,7 +96,8 @@ margin_right = 338.0
 margin_bottom = 20.0
 hint_tooltip = "requires [branch_name] argument, default is \"-b main\""
 size_flags_horizontal = 3
-text = "Init"
+disabled = true
+text = "Initialised"
 
 [node name="commit2" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
 margin_left = 342.0
@@ -201,9 +203,9 @@ size_flags_horizontal = 3
 text = "Tag push"
 
 [node name="button_input" type="LineEdit" parent="VBoxContainer/VBoxContainer"]
-margin_top = 162.0
+margin_top = 66.0
 margin_right = 1024.0
-margin_bottom = 192.0
+margin_bottom = 96.0
 rect_min_size = Vector2( 0, 30 )
 placeholder_text = "button input"
 __meta__ = {
@@ -211,13 +213,13 @@ __meta__ = {
 }
 
 [node name="git_terminal" type="Label" parent="VBoxContainer/VBoxContainer"]
-margin_top = 196.0
+margin_top = 100.0
 margin_right = 1024.0
-margin_bottom = 210.0
+margin_bottom = 114.0
 text = "Git terminal"
 
 [node name="history" type="TextEdit" parent="VBoxContainer/VBoxContainer"]
-margin_top = 214.0
+margin_top = 118.0
 margin_right = 1024.0
 margin_bottom = 542.0
 size_flags_vertical = 7
