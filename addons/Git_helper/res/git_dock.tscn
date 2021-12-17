@@ -74,7 +74,7 @@ hint_tooltip = "can take [arguments] argument, default is \"-A\""
 size_flags_horizontal = 3
 text = "Add"
 
-[node name="more" type="Button" parent="VBoxContainer/VBoxContainer/buttons"]
+[node name="toggle_more" type="Button" parent="VBoxContainer/VBoxContainer/buttons"]
 margin_left = 684.0
 margin_top = 24.0
 margin_right = 1022.0
@@ -221,15 +221,15 @@ text = "Git terminal"
 [node name="history" type="TextEdit" parent="VBoxContainer/VBoxContainer"]
 margin_top = 118.0
 margin_right = 1024.0
-margin_bottom = 542.0
+margin_bottom = 472.0
 size_flags_vertical = 7
 text = "*** start ***"
 readonly = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_top = 546.0
+margin_top = 476.0
 margin_right = 1024.0
-margin_bottom = 576.0
+margin_bottom = 506.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_top = 8.0
@@ -245,18 +245,78 @@ rect_min_size = Vector2( 0, 30 )
 size_flags_horizontal = 3
 placeholder_text = "git command line"
 
-[node name="enter" type="Button" parent="VBoxContainer/VBoxContainer"]
+[node name="settings" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 510.0
+margin_right = 1024.0
+margin_bottom = 576.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="settings" type="Label" parent="VBoxContainer/VBoxContainer/settings"]
+margin_right = 1024.0
+margin_bottom = 14.0
+text = "Settings"
+
+[node name="VBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/settings"]
+margin_top = 18.0
+margin_right = 1024.0
+margin_bottom = 42.0
+
+[node name="git_path" type="Label" parent="VBoxContainer/VBoxContainer/settings/VBoxContainer"]
+margin_top = 5.0
+margin_right = 51.0
+margin_bottom = 19.0
+text = "Git Path"
+
+[node name="git_path_input" type="LineEdit" parent="VBoxContainer/VBoxContainer/settings/VBoxContainer"]
+margin_left = 55.0
+margin_right = 1024.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+placeholder_text = "path"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/settings"]
+margin_top = 46.0
+margin_right = 1024.0
+margin_bottom = 66.0
+
+[node name="save" type="Button" parent="VBoxContainer/VBoxContainer/settings/HBoxContainer2"]
+margin_right = 510.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Save"
+
+[node name="cancel" type="Button" parent="VBoxContainer/VBoxContainer/settings/HBoxContainer2"]
+margin_left = 514.0
+margin_right = 1024.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 580.0
 margin_right = 1024.0
 margin_bottom = 600.0
+
+[node name="enter" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 1008.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
 text = "Enter"
+
+[node name="toggle_setings" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 1012.0
+margin_right = 1024.0
+margin_bottom = 20.0
+toggle_mode = true
 
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/status" to="." method="_on_status_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/commit" to="." method="_on_commit_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/push" to="." method="_on_push_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/pull" to="." method="_on_pull_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/add" to="." method="_on_add_pressed"]
-[connection signal="toggled" from="VBoxContainer/VBoxContainer/buttons/more" to="." method="_on_more_toggled"]
+[connection signal="toggled" from="VBoxContainer/VBoxContainer/buttons/toggle_more" to="." method="_on_toggle_more_toggled"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/init" to="." method="_on_init_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/commit2" to="." method="_on_commit2_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/clone" to="." method="_on_clone_pressed"]
@@ -271,4 +331,7 @@ text = "Enter"
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/tag_push" to="." method="_on_tag_push_pressed"]
 [connection signal="cursor_changed" from="VBoxContainer/VBoxContainer/history" to="." method="_on_history_cursor_changed"]
 [connection signal="text_entered" from="VBoxContainer/VBoxContainer/HBoxContainer/commandline" to="." method="_on_enter_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/enter" to="." method="_on_enter_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/settings/HBoxContainer2/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/settings/HBoxContainer2/cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer2/enter" to="." method="_on_enter_pressed"]
+[connection signal="toggled" from="VBoxContainer/VBoxContainer/HBoxContainer2/toggle_setings" to="." method="_on_toggle_setings_toggled"]

@@ -16,16 +16,24 @@ extends Control
 onready var helper_input = $VBoxContainer/VBoxContainer/button_input
 onready var history = $VBoxContainer/VBoxContainer/history
 onready var commandline = $VBoxContainer/VBoxContainer/HBoxContainer/commandline
-onready var more_buttons = $VBoxContainer/VBoxContainer/more_buttons
 
-var git_path = "addons/Git_helper/res/git.sh"
+var settings : Dictionary
 
 var branch = "main"
 
 
+# TODO: initiate settings from "user://conf.json"
+func _init():
+	# get settings from conf file or set defaults and save to conf file
+	if !file_to_settings():
+		settings.git_path = "git"
+		
+		settings_to_file()
+
 func _ready():
 	# so I can have it open in scene editor
-	more_buttons.visible = false
+	$VBoxContainer/VBoxContainer/more_buttons.visible = false
+	$VBoxContainer/VBoxContainer/settings.visible = false
 	
 	# check if git is already initialised and also disable init button
 	if try_set_init_to_done():
@@ -36,6 +44,10 @@ func _ready():
 		branch = arr[0]
 	
 	is_origin_present()
+	
+	# add icon to settings button
+	# TODO: check if this can be done directly in tscn somehow
+	$VBoxContainer/VBoxContainer/HBoxContainer2/toggle_setings.icon = get_icon("PluginScript", "EditorIcons")
 
 
 #
@@ -54,10 +66,10 @@ func do_git_command(command:Array, silent:bool=false) -> String:
 		print_to_history("$ git " + cmd)
 	
 	# run git bash script
-	var ret = OS.execute(git_path, command, true, output)
+	var ret = OS.execute(settings.git_path, command, true, output, true)
 	var out = array_join(output, "\n")
 
-	if !silent && out.length() > 0:
+	if !silent and out.length() > 0:
 		print_to_history(out)
 	
 	if ret != OK:
@@ -137,6 +149,33 @@ func is_link_ok(link:String) -> bool:
 func print_error(message:String) -> void:
 	print_to_history("!ERR: "+message)
 
+func settings_to_file() -> void:
+	var save_file = File.new()
+	save_file.open("user://conf.json", File.WRITE)
+	# TODO: should I use this instead
+	#save_file.store_string(JSON.print(settings))
+	save_file.store_string(to_json(settings))
+	save_file.close()
+
+func file_to_settings() -> bool:
+	var save_file = File.new()
+	if save_file.file_exists("user://conf.json"):
+		save_file.open("user://conf.json", File.READ)
+		# TODO: should I use this instead
+		#settings = JSON.parse(save_file.get_as_text()).result
+		settings = parse_json(save_file.get_as_text())
+		save_file.close()
+
+		return true
+
+	return false
+
+func clear_settings_input_fields():
+	$VBoxContainer/VBoxContainer/settings/VBoxContainer/git_path_input.text = ""
+
+func fill_settings_input_fields():
+	$VBoxContainer/VBoxContainer/settings/VBoxContainer/git_path_input.text = settings.git_path
+
 
 #
 # Other signals
@@ -187,8 +226,8 @@ func _on_add_pressed() -> void:
 	else:
 		do_git_command(["add", "-A"])
 
-func _on_more_toggled(button_pressed):
-	more_buttons.visible = button_pressed
+func _on_toggle_more_toggled(button_pressed):
+	$VBoxContainer/VBoxContainer/more_buttons.visible = button_pressed
 
 func _on_init_pressed() -> void:
 	if helper_input.text != "":
@@ -321,3 +360,22 @@ func _on_enter_pressed(_arg:=null) -> void:
 		commandline.text = ""
 	else:
 		print_error("empty commandline box")
+
+func _on_toggle_setings_toggled(button_pressed):
+	$VBoxContainer/VBoxContainer/settings.visible = button_pressed
+	if button_pressed:
+		fill_settings_input_fields()
+	else:
+		clear_settings_input_fields()
+
+func _on_cancel_pressed():
+	_on_toggle_setings_toggled(false)
+	$VBoxContainer/VBoxContainer/HBoxContainer2/toggle_setings.pressed = false
+
+func _on_save_pressed():
+	# save input to settings variable
+	settings.git_path = $VBoxContainer/VBoxContainer/settings/VBoxContainer/git_path_input.text
+	
+	settings_to_file()
+	
+	_on_cancel_pressed()
