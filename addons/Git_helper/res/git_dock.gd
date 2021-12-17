@@ -61,8 +61,6 @@ func do_git_command(command:Array, silent:bool=false) -> String:
 		print_to_history(out)
 	
 	if ret != OK:
-		printerr("`git %s` returned %d" % [cmd, ret])
-		printerr("Logs saved to res://git.log res://git-err.log")
 		print_error("do_git_command failed: return code %d" % ret)
 		return "error"
 
@@ -137,7 +135,7 @@ func is_link_ok(link:String) -> bool:
 	return false
 
 func print_error(message:String) -> void:
-	print_to_history("=> !ERR: "+message)
+	print_to_history("!ERR: "+message)
 
 
 #
@@ -213,9 +211,13 @@ func _on_commit2_pressed() -> void:
 	else:
 		print_error("empty input box")
 
+# TODO: this is untested!
 func _on_clone_pressed() -> void:
 	if is_link_ok(helper_input.text):
-		do_git_command(["clone", helper_input.text, "."])
+		do_git_command(["remote", "add", "origin", helper_input.text])
+		do_git_command([ "fetch"])
+		do_git_command([ "reset", "origin", "main"])
+		do_git_command([ "checkout", "-t", "origin", "master"])
 		is_origin_present()
 	else:
 		print_error("link is invalid")

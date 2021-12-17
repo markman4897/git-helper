@@ -106,14 +106,18 @@ size_flags_horizontal = 3
 text = "Commit -m -m"
 
 [node name="clone" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+self_modulate = Color( 0.517647, 0.517647, 0.517647, 1 )
 margin_left = 684.0
 margin_right = 1022.0
 margin_bottom = 20.0
-hint_tooltip = "requires [repo_link] argument"
+hint_tooltip = "requires [repo_link] argument
+*attempts to clone into working directory, potentially unsafe!"
 size_flags_horizontal = 3
+disabled = true
 text = "Clone"
 
 [node name="checkout" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+self_modulate = Color( 0.517647, 0.517647, 0.517647, 1 )
 margin_top = 24.0
 margin_right = 338.0
 margin_bottom = 44.0
@@ -123,6 +127,7 @@ disabled = true
 text = "Checkout"
 
 [node name="merge_to" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+self_modulate = Color( 0.517647, 0.517647, 0.517647, 1 )
 margin_left = 342.0
 margin_top = 24.0
 margin_right = 680.0
@@ -142,6 +147,7 @@ size_flags_horizontal = 3
 text = "Tags"
 
 [node name="git_ignore" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+self_modulate = Color( 0.517647, 0.517647, 0.517647, 1 )
 margin_top = 48.0
 margin_right = 338.0
 margin_bottom = 68.0
