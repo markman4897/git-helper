@@ -102,7 +102,7 @@ func is_origin_present() -> bool:
 	var remotes = do_git_command(["remote", "-v"], true)
 	if "origin" in remotes:
 		$VBoxContainer/VBoxContainer/buttons/push.disabled = false
-		$VBoxContainer/VBoxContainer/buttons/pull.disabled = false
+		$VBoxContainer/VBoxContainer/more_buttons/pull.disabled = false
 		$VBoxContainer/VBoxContainer/more_buttons/tag_push.disabled = false
 		$VBoxContainer/VBoxContainer/more_buttons/set_origin.text = "Set Origin"
 		
@@ -110,7 +110,7 @@ func is_origin_present() -> bool:
 	
 	else:
 		$VBoxContainer/VBoxContainer/buttons/push.disabled = true
-		$VBoxContainer/VBoxContainer/buttons/pull.disabled = true
+		$VBoxContainer/VBoxContainer/more_buttons/pull.disabled = true
 		$VBoxContainer/VBoxContainer/more_buttons/tag_push.disabled = true
 		$VBoxContainer/VBoxContainer/more_buttons/set_origin.text = "Add Origin"
 		
