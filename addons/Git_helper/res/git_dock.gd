@@ -47,6 +47,8 @@ func _ready():
 	
 	# add icon to settings button
 	# TODO: check if this can be done directly in tscn somehow
+	# TODO: get better icon, you can check available icons here
+	# https://github.com/godotengine/godot/tree/master/editor/icons
 	$VBoxContainer/VBoxContainer/HBoxContainer2/toggle_setings.icon = get_icon("PluginScript", "EditorIcons")
 
 
@@ -353,9 +355,27 @@ func _on_tag_push_pressed() -> void:
 
 func _on_enter_pressed(_arg:=null) -> void:
 	if commandline.text != "":
-		# could probably just skip this, but this way it conforms with style
-		# of other functions above
 		var arg = commandline.text.split(" ")
+		var args : Array
+		var temp := ""
+		
+		for a in arg:
+			match ['"' in a, temp == ""]:
+				# normal argument
+				[false, true]:
+					args.push_back(a)
+				# first "
+				[true, true]:
+					temp += a
+				# last "
+				[true, false]:
+					temp += a
+					args.push_back(temp)
+					temp = ""
+				# string between ""
+				[false, false]:
+					temp += a
+		
 		do_git_command(arg)
 		commandline.text = ""
 	else:
