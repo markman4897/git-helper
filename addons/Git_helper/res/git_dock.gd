@@ -154,8 +154,6 @@ func print_error(message:String) -> void:
 func settings_to_file() -> void:
 	var save_file = File.new()
 	save_file.open("user://conf.json", File.WRITE)
-	# TODO: should I use this instead
-	#save_file.store_string(JSON.print(settings))
 	save_file.store_string(to_json(settings))
 	save_file.close()
 
@@ -163,8 +161,6 @@ func file_to_settings() -> bool:
 	var save_file = File.new()
 	if save_file.file_exists("user://conf.json"):
 		save_file.open("user://conf.json", File.READ)
-		# TODO: should I use this instead
-		#settings = JSON.parse(save_file.get_as_text()).result
 		settings = parse_json(save_file.get_as_text())
 		save_file.close()
 
