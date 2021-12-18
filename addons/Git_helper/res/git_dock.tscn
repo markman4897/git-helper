@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://addons/Git_helper/res/git_dock.gd" type="Script" id=1]
+
+[sub_resource type="Image" id=3]
+data = {
+"data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
+"format": "LumAlpha8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id=2]
+flags = 4
+flags = 4
+image = SubResource( 3 )
+size = Vector2( 16, 16 )
 
 [node name="Git Helper" type="Control"]
 anchor_right = 1.0
@@ -34,12 +49,12 @@ margin_bottom = 62.0
 size_flags_horizontal = 3
 columns = 3
 
-[node name="status" type="Button" parent="VBoxContainer/VBoxContainer/buttons"]
+[node name="add" type="Button" parent="VBoxContainer/VBoxContainer/buttons"]
 margin_right = 338.0
 margin_bottom = 20.0
-hint_tooltip = "requires no arguments"
+hint_tooltip = "can take [arguments] argument, default is \"-A\""
 size_flags_horizontal = 3
-text = "Status"
+text = "Add"
 
 [node name="commit" type="Button" parent="VBoxContainer/VBoxContainer/buttons"]
 margin_left = 342.0
@@ -57,22 +72,22 @@ hint_tooltip = "can take [branch_name] argument, default is \"main\""
 size_flags_horizontal = 3
 text = "Push"
 
-[node name="pull" type="Button" parent="VBoxContainer/VBoxContainer/buttons"]
+[node name="status" type="Button" parent="VBoxContainer/VBoxContainer/buttons"]
 margin_top = 24.0
 margin_right = 338.0
 margin_bottom = 44.0
-hint_tooltip = "can take [branch_name] argument, default is \"main\""
+hint_tooltip = "requires no arguments"
 size_flags_horizontal = 3
-text = "Pull"
+text = "Status"
 
-[node name="add" type="Button" parent="VBoxContainer/VBoxContainer/buttons"]
+[node name="commit2" type="Button" parent="VBoxContainer/VBoxContainer/buttons"]
 margin_left = 342.0
 margin_top = 24.0
 margin_right = 680.0
 margin_bottom = 44.0
-hint_tooltip = "can take [arguments] argument, default is \"-A\""
+hint_tooltip = "requires [title]|[message] arguments ([message] argument takes everything after \"|\" as string)"
 size_flags_horizontal = 3
-text = "Add"
+text = "Commit -m -m"
 
 [node name="toggle_more" type="Button" parent="VBoxContainer/VBoxContainer/buttons"]
 margin_left = 684.0
@@ -99,24 +114,24 @@ size_flags_horizontal = 3
 disabled = true
 text = "Initialised"
 
-[node name="commit2" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
-margin_left = 342.0
-margin_right = 680.0
-margin_bottom = 20.0
-hint_tooltip = "requires [title]|[message] arguments ([message] argument takes everything after \"|\" as string)"
-size_flags_horizontal = 3
-text = "Commit -m -m"
-
 [node name="clone" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
 self_modulate = Color( 0.517647, 0.517647, 0.517647, 1 )
-margin_left = 684.0
-margin_right = 1022.0
+margin_left = 342.0
+margin_right = 680.0
 margin_bottom = 20.0
 hint_tooltip = "requires [repo_link] argument
 *attempts to clone into working directory, potentially unsafe!"
 size_flags_horizontal = 3
 disabled = true
 text = "Clone"
+
+[node name="pull" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
+margin_left = 684.0
+margin_right = 1022.0
+margin_bottom = 20.0
+hint_tooltip = "can take [branch_name] argument, default is \"main\""
+size_flags_horizontal = 3
+text = "Pull"
 
 [node name="checkout" type="Button" parent="VBoxContainer/VBoxContainer/more_buttons"]
 self_modulate = Color( 0.517647, 0.517647, 0.517647, 1 )
@@ -221,15 +236,15 @@ text = "Git terminal"
 [node name="history" type="TextEdit" parent="VBoxContainer/VBoxContainer"]
 margin_top = 118.0
 margin_right = 1024.0
-margin_bottom = 472.0
+margin_bottom = 540.0
 size_flags_vertical = 7
 text = "*** start ***"
 readonly = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_top = 476.0
+margin_top = 544.0
 margin_right = 1024.0
-margin_bottom = 506.0
+margin_bottom = 574.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_top = 8.0
@@ -246,6 +261,7 @@ size_flags_horizontal = 3
 placeholder_text = "git command line"
 
 [node name="settings" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+visible = false
 margin_top = 510.0
 margin_right = 1024.0
 margin_bottom = 576.0
@@ -295,31 +311,32 @@ size_flags_horizontal = 3
 text = "Cancel"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_top = 580.0
+margin_top = 578.0
 margin_right = 1024.0
 margin_bottom = 600.0
 
 [node name="enter" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_right = 1008.0
-margin_bottom = 20.0
+margin_right = 992.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 text = "Enter"
 
 [node name="toggle_setings" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 1012.0
+margin_left = 996.0
 margin_right = 1024.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 toggle_mode = true
+icon = SubResource( 2 )
 
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/status" to="." method="_on_status_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/add" to="." method="_on_add_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/commit" to="." method="_on_commit_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/push" to="." method="_on_push_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/pull" to="." method="_on_pull_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/add" to="." method="_on_add_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/status" to="." method="_on_status_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/buttons/commit2" to="." method="_on_commit2_pressed"]
 [connection signal="toggled" from="VBoxContainer/VBoxContainer/buttons/toggle_more" to="." method="_on_toggle_more_toggled"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/init" to="." method="_on_init_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/commit2" to="." method="_on_commit2_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/clone" to="." method="_on_clone_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/pull" to="." method="_on_pull_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/checkout" to="." method="_on_checkout_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/merge_to" to="." method="_on_merge_to_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/more_buttons/tags" to="." method="_on_tags_pressed"]
